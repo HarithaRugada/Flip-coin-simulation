@@ -2,18 +2,22 @@
 echo "Program for the win of head or tail"
 hwin=0
 twin=0
-for(( i=0; i<10; i++ ))
+i=0
+while [ $hwin -lt 21 ] && [ $twin -lt 21 ]
 do
 	random=$RANDOM
-	flip=$(( $random%2 ))
-	if [ $flip -eq 1 ]
+	flip[$i]=$(( $random%2 ))
+	if [ ${flip[$i]} -eq 1 ]
 	then
-		echo "Heads"
 		hwin=$(( $hwin+1 ))
 	else
-		echo "Tails"
 		twin=$(( $twin+1 ))
 	fi
+	i=$(( $i+1 ))
 done
-echo "head win > "$hwin
-echo "tail win > "$twin
+if [ $hwin -gt $twin ]
+then
+        echo "Heads has won 21 times"
+else
+        echo "Tails has won 21 times"
+fi
